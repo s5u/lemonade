@@ -3,9 +3,7 @@
 ## admin_usersテーブル
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false, add_index|
-|password|string|null: false|
-|email|string|null: false|
+|name|string|null: false, add_index: true|
 
 ### Association
 - has_many :items
@@ -13,15 +11,13 @@
 ## usersテーブル
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false, add_index|
-|password|string|null: false|
-|email|string|null: false|
+|name|string|null: false, add_index: true|
 |zip_code|string|null: false|
 |address1|string|null: false|
 |address2|string|null: false|
 |address3|string|null: false|
 |credit_code|integer|null: false|
-|point|integer|default: 0|
+|point|integer|null: false, default: 0|
 
 ### Association
 - has_many :orders
@@ -47,7 +43,7 @@
 ## wish_listsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false, add_index|
+|name|string|null: false, add_index: true|
 |publish_status|bool|null: false|
 
 ### Association
@@ -69,25 +65,23 @@
 ## cartsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|user|references|foreign_key: true|
-|item|references|foreign_key: true|
 
 ### Association
 - belongs_to :user
 - has_many :cart_items
-- has_many :items, throuch: :cart_items
+- has_many :items, through: :cart_items
 
 ## itemsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false, add_index|
+|name|string|null: false, add_index: true|
 |description|text||
 |sub_description|text||
 |price|integer|null: false|
 |stock|integer|null: false|
 |category|string|null: false|
 |sub_category|string|null: false|
-|purchased_count|integer||
+|purchased_count|integer|null: false, default: 0|
 
 ### Association
 - belongs_to :admin_user
@@ -105,7 +99,7 @@
 ## categoriesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false, add_index|
+|name|string|null: false, add_index: true|
 
 ### Association
 - has_many :items
@@ -115,7 +109,7 @@
 ## sub_categoriesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false, add_index|
+|name|string|null: false, add_index: true|
 
 ### Association
 - belongs_to :categry
@@ -136,13 +130,13 @@
 |Column|Type|Options|
 |------|----|-------|
 |shipping_date|date|null: false|
-|cansell_stats|bool|null: false|
-|give_point|integer|default: 0|
+|cansell_status|bool|null: false|
+|give_point|integer|null: false, default: 0|
 
 ### Association
 - belongs_to :user
 - has_many :order_items
-- has_many :orders, throgh: :order_items
+- has_many :items, throgh: :order_items
 
 
 ## couponsテーブル
@@ -153,7 +147,7 @@
 
 ### Association
 - has_many :coupon_items
-- has_many :coupons, throgh: :coupon_items
+- has_many :items, throgh: :coupon_items
 
 
 # 中間テーブル
@@ -161,6 +155,7 @@
 ## cart_itemsテーブル
 |Column|Type|Options|
 |------|----|-------|
+|quantity|integer|null: false, default: 0|
 |item|references|foreign_key: true|
 |cart|references|foreign_key: true|
 
