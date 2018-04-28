@@ -3,7 +3,7 @@
 ## admin_usersテーブル
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false, add_index: true|
+|name|string|null: false, index: true|
 
 ### Association
 - has_many :items
@@ -11,7 +11,7 @@
 ## usersテーブル
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false, add_index: true|
+|name|string|null: false, index: true|
 |zip_code|string|null: false|
 |address1|string|null: false|
 |address2|string|null: false|
@@ -43,7 +43,7 @@
 ## wish_listsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false, add_index: true|
+|name|string|null: false, index: true|
 |publish_status|bool|null: false|
 
 ### Association
@@ -74,7 +74,7 @@
 ## itemsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false, add_index: true|
+|name|string|null: false, index: true|
 |description|text||
 |sub_description|text||
 |price|integer|null: false|
@@ -99,7 +99,7 @@
 ## categoriesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false, add_index: true|
+|name|string|null: false, index: true|
 
 ### Association
 - has_many :items
@@ -109,10 +109,10 @@
 ## sub_categoriesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false, add_index: true|
+|name|string|null: false, index: true|
 
 ### Association
-- belongs_to :categry
+- belongs_to :category
 - has_many :items
 
 
